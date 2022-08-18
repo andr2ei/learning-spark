@@ -1,7 +1,7 @@
 package ru.andronov.learning.spark.dataframe.creation
 
 import org.apache.spark.sql.SparkSession
-import ru.andronov.learning.spark.dataframe.model.User
+import ru.andronov.learning.spark.dataframe.model.{ModelCreator, User}
 
 object DfCreationPractice {
 
@@ -11,13 +11,10 @@ object DfCreationPractice {
       .master("local[*]")
       .getOrCreate()
 
-    val usersRDD = spark.sparkContext.parallelize(Seq(
-      User(1, "John", "Doe", 21),
-      User(2, "Jane", "Smith", 25)))
-
-    val usersDF = spark.createDataFrame(usersRDD)
+    val usersDF = ModelCreator.createUserDf(spark)
 
     usersDF.show(10, truncate = false)
+    usersDF.printSchema()
   }
 
 }

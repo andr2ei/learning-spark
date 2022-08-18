@@ -1,18 +1,18 @@
 package ru.andronov.learning.spark.dataframe.sql
 
 import org.apache.spark.sql.{DataFrame, SparkSession}
-import ru.andronov.learning.spark.dataframe.model.{Post, User}
+import ru.andronov.learning.spark.dataframe.model.{ModelCreator, Post, User}
 
 object DfSqlPractice {
 
   def main(args: Array[String]): Unit = {
     val spark = SparkSession.builder()
-      .appName("DF creation practice")
+      .appName("DF sql practice")
       .master("local[*]")
       .getOrCreate()
 
-    val usersDF: DataFrame = createUserDf(spark)
-    val postsDF: DataFrame = createPostDf(spark)
+    val usersDF: DataFrame = ModelCreator.createUserDf(spark)
+    val postsDF: DataFrame = ModelCreator.createPostDf(spark)
 
     usersDF.createOrReplaceTempView("users")
     postsDF.createOrReplaceTempView("posts")
@@ -31,24 +31,4 @@ object DfSqlPractice {
     joinedUsersAndPosts.show(10, truncate = false)
   }
 
-
-  private def createUserDf(spark: SparkSession) = {
-    val usersRDD = spark.sparkContext.parallelize(Seq(
-      User(1, "John", "Doe", 21),
-      User(2, "Jane", "Smith", 25)))
-
-    val usersDF = spark.createDataFrame(usersRDD)
-    usersDF
-  }
-
-  private def createPostDf(spark: SparkSession) = {
-    val postsRDD = spark.sparkContext.parallelize(Seq(
-      Post(1, 1, "Text 1 of user 1"),
-      Post(2, 1, "Text 2 of user 1"),
-      Post(3, 2, "Text 3 of user 2"),
-      Post(4, 2, "Text 4 of user 2")))
-
-    val postsDF = spark.createDataFrame(postsRDD)
-    postsDF
-  }
 }

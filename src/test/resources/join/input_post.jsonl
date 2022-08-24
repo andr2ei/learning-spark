@@ -1,0 +1,3 @@
+{ "id": 1, "userId": 1, "text": "Text 1 of user 1"}
+{ "id": 2, "userId": 2, "text": "Text 2 of user 2"}
+{ "id": 3, "userId": 0, "text": "Text 3 of anon user"}

@@ -1,0 +1,3 @@
+{"id":1,"firstName":"John","lastName":"Doe","text":"Text 1 of user 1"}
+{"id":null,"firstName":null,"lastName":null,"text":"Text 2 of user 2"}
+{"id":null,"firstName":null,"lastName":null,"text":"Text 3 of anon user"}

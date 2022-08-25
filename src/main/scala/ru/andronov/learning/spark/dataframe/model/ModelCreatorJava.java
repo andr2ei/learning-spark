@@ -21,8 +21,8 @@ public class ModelCreatorJava {
         skills.put("university", "Oxford");
         users.add(RowFactory.create(1, "John", "Doe", 18, RowFactory.create("USA", "Beverly", 10), technologies, skills));
         users.add(RowFactory.create(2, "Marine", "James", 25, RowFactory.create("GB", "Walson", 11), technologies, skills));
-        users.add(RowFactory.create(3, "Marine", "James", 25, RowFactory.create("GB", "Walson", 11), Collections.emptyList(), Collections.emptyMap()));
-        users.add(RowFactory.create(4, "Anthony", "Hopkins", 30, RowFactory.create("RU", "Lesnay", 7), Collections.emptyList(), Collections.emptyMap()));
+        users.add(RowFactory.create(3, "Marine", "Hopkins", 25, RowFactory.create("GB", "Walson", 11), Collections.emptyList(), Collections.emptyMap()));
+        users.add(RowFactory.create(4, "Anthony", "Bloch", 30, RowFactory.create("BL", "Lesnay", 7), Collections.emptyList(), Collections.emptyMap()));
         users.add(RowFactory.create(5, "Jade", "Galaskin", 31, RowFactory.create("RU", "Lesnay", 7), Collections.emptyList(), Collections.emptyMap()));
         users.add(RowFactory.create(6, "John", "Travolta", 32, RowFactory.create("RU", "Lesnay", 7), Collections.emptyList(), Collections.emptyMap()));
         StructType schema = new StructType().

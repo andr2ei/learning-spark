@@ -91,5 +91,32 @@ public class DfJdbcUpsertPractice {
                 }
             }
         });
+
+        updates.foreachPartition((ForeachPartitionFunction<Row>) iterator -> {
+            try(Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/learning-spark", "postgres", "postgres")) {
+                while (iterator.hasNext()) {
+                    try (PreparedStatement preparedStatement = con.prepareStatement("UPDATE public.test_2_users SET \"firstName\" = ?, \"lastName\" = ?, \"country\" = ? WHERE \"id\" = ?")) {
+                        Row r = iterator.next();
+                        preparedStatement.setString(1, r.getString(1));
+                        preparedStatement.setString(2, r.getString(2));
+                        preparedStatement.setString(3, r.getString(3));
+                        preparedStatement.setInt(4, r.getInt(0));
+                        preparedStatement.execute();
+                    }
+                }
+            }
+        });
+
+        deletes.foreachPartition((ForeachPartitionFunction<Row>) iterator -> {
+            try(Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/learning-spark", "postgres", "postgres")) {
+                while (iterator.hasNext()) {
+                    try (PreparedStatement preparedStatement = con.prepareStatement("DELETE FROM public.test_2_users WHERE \"id\" = ?")) {
+                        Row r = iterator.next();
+                        preparedStatement.setInt(1, r.getInt(0));
+                        preparedStatement.execute();
+                    }
+                }
+            }
+        });
     }
 }

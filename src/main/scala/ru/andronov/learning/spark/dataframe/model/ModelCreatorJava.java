@@ -1,12 +1,10 @@
 package ru.andronov.learning.spark.dataframe.model;
 
-import org.apache.spark.rdd.RDD;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.RowFactory;
 import org.apache.spark.sql.SparkSession;
 import org.apache.spark.sql.types.DataTypes;
-import org.apache.spark.sql.types.StringType;
 import org.apache.spark.sql.types.StructType;
 
 import java.util.*;
@@ -24,6 +22,9 @@ public class ModelCreatorJava {
         users.add(RowFactory.create(1, "John", "Doe", 18, RowFactory.create("USA", "Beverly", 10), technologies, skills));
         users.add(RowFactory.create(2, "Marine", "James", 25, RowFactory.create("GB", "Walson", 11), technologies, skills));
         users.add(RowFactory.create(3, "Marine", "James", 25, RowFactory.create("GB", "Walson", 11), Collections.emptyList(), Collections.emptyMap()));
+        users.add(RowFactory.create(4, "Anthony", "Hopkins", 30, RowFactory.create("RU", "Lesnay", 7), Collections.emptyList(), Collections.emptyMap()));
+        users.add(RowFactory.create(5, "Jade", "Galaskin", 31, RowFactory.create("RU", "Lesnay", 7), Collections.emptyList(), Collections.emptyMap()));
+        users.add(RowFactory.create(6, "John", "Travolta", 32, RowFactory.create("RU", "Lesnay", 7), Collections.emptyList(), Collections.emptyMap()));
         StructType schema = new StructType().
                 add("id", "integer")
                 .add("firstName", "string")
